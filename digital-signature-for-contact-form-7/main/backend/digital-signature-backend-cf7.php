@@ -22,7 +22,7 @@ function DSCF7_add_form_tag_signature() {
 add_action( 'wpcf7_admin_init' , 'DSCF7_add_tag_generator_signature' , 18, 0);
 function DSCF7_add_tag_generator_signature() {
 	$tag_generator = WPCF7_TagGenerator::get_instance();
-	$tag_generator->add( 'signature', __( 'digital_signature', 'digital-signature-for-contact-form-7' ) , 'DSCF7_tag_generator_signature' );
+	$tag_generator->add( 'signature', __( 'digital_signature', 'digital-signature-for-contact-form-7' ) , 'DSCF7_tag_generator_signature' ,array('version'=>2) );
 }
 
 
@@ -69,7 +69,7 @@ function  DSCF7_signature_form_tag_handler( $tag ) {
 		$attsa['backcolor']= "#dddddd";
 	}
       
-	if( !empty($tag->get_option( 'width' )[0])){
+	/*if( !empty($tag->get_option( 'width' )[0])){
 		$attsa['width'] = $tag->get_option('width')[0];
 	}else{
 		$attsa['width']= 400;
@@ -79,7 +79,10 @@ function  DSCF7_signature_form_tag_handler( $tag ) {
 		$attsa['height'] = $tag->get_option('height')[0];
 	}else{
 		$attsa['height']= 200;
-	}
+	}*/
+
+	$attsa['width']= 300;
+	$attsa['height']= 200;
 
 	$attsa = wpcf7_format_atts( $attsa );
 
@@ -118,98 +121,62 @@ function DSCF7_tag_generator_signature( $contact_form, $args = '' ) {
 	$type = 'signature';
 	$description = __( "Generate a form-tag for a signature field.", 'digital-signature-for-contact-form-7' );
  	?>
+	<header class="description-box">
+	    <h3>signature  form tag generator</h3>
+	    <p><?php echo sprintf( esc_html( $description ) ); ?></p>
+	</header> 
 	<div class="control-box">
-		<fieldset>
-			<legend><?php echo sprintf( esc_html( $description ) ); ?></legend>
-			<table class="form-table">
-				<tbody>
-					<tr>
-						<th scope="row">
-							<label for="<?php echo esc_attr( $args['content'] . '-filed_type' ); ?>"><?php echo esc_html( __( 'Field type', 'digital-signature-for-contact-form-7' ) ); ?></label>
-						</th>
-						<td>
-							<input type="checkbox" name="required" class=" required_files" required>
-							<label><?php echo esc_html( __( 'Required Field', 'digital-signature-for-contact-form-7' ) ); ?></label>
-						</td>
-					</tr>
-					<tr>
-						<th scope="row">
-							<label for="<?php echo esc_attr( $args['content'] . '-name' ); ?>"><?php echo esc_html( __( 'Name', 'digital-signature-for-contact-form-7' ) ); ?>
-							</label>
-						</th>
-						<td>
-							<input type="text" name="name" class="tg-name oneline" id="<?php echo esc_attr( $args['content'] . '-name' ); ?>" />
-						</td>
-					</tr>
-					<tr>
-						<th scope="row">
-							<label for="<?php echo esc_attr( $args['content'] . '-color' ); ?>"><?php echo esc_html( __( 'Signature Pen color', 'digital-signature-for-contact-form-7' ) ); ?>
-							</label>
-						</th>
-						<td>
-						<input type="color" name="color" class="oneline option color-picker" type="text"  data-alpha="true"  id="<?php echo esc_attr( $args['content'] . '-color' ); ?>" />
-						</td>
-					</tr>
-					<tr>
-						<th scope="row">
-							<label for="<?php echo esc_attr( $args['content'] . '-backcolor' ); ?>"><?php echo esc_html( __( 'Signature-pad background color', 'digital-signature-for-contact-form-7' ) ); ?>
-							</label>
-						</th>
-						<td>
-							<input type="color" name="backcolor" name="color"  type="text"  value="#dddddd"  data-alpha="true"  class="oneline option color-picker" id="<?php echo esc_attr( $args['content'] . '-backcolor' ); ?>" />
-						</td>
-					</tr>
-					<tr>
-						<th scope="row">
-							<label for="<?php echo esc_attr( $args['content'] . '-width' ); ?>"><?php echo esc_html( __( 'Width', 'digital-signature-for-contact-form-7' ) ); ?>
-							</label>
-						</th>
-						<td>
-							<input type="number" name="width" min="1"  value="300" class="numeric option"  id="<?php echo esc_attr( $args['content'] . '-width' ); ?>" />
-						
-						</td>
-					</tr>
-					<tr>
-						<th scope="row">
-							<label for="<?php echo esc_attr( $args['content'] . '-height' ); ?>"><?php echo esc_html( __( 'Height', 'digital-signature-for-contact-form-7' ) ); ?>
-							</label>
-						</th>
-						<td>
-							<input type="number" name="height" min="1" value="200" class="numeric option"  id="<?php echo esc_attr( $args['content'] . '-height' ); ?>" />
-						</td>
-					</tr>
-					<tr>
-						<th scope="row">
-							<label for="<?php echo esc_attr( $args['content'] . '-id' ); ?>"><?php echo esc_html( __( 'Id attribute', 'digital-signature-for-contact-form-7' ) ); ?>
-							</label>
-						</th>
-						<td>
-							<input type="text" name="id"  class="idvalue oneline option" id="<?php echo esc_attr( $args['content'] . '-id' ); ?>" />
-						</td>
-					</tr>
-					<tr>
-						<th scope="row">
-							<label for="<?php echo esc_attr( $args['content'] . '-class' ); ?>"><?php echo esc_html( __( 'Class attribute', 'digital-signature-for-contact-form-7' ) ); ?>
-							</label>
-						</th>
-						<td>
-							<input type="text" name="class" class="classvalue oneline option" id="<?php echo esc_attr( $args['content'] . '-class' ); ?>" />
-						</td>
-					</tr>
-				</tbody>
-			</table>
-		</fieldset>
+			<fieldset>
+    			<legend>
+    				Field type
+    			</legend>
+    			<input type="hidden" data-tag-part="basetype" value="signature" >
+    			<label>
+				<input type="checkbox" data-tag-part="type-suffix" value="*">This is a required field.</label>
+    		</fieldset>
+
+    		<fieldset>
+				<legend>Name</legend>
+				<input type="text" data-tag-part="name" pattern="[A-Za-z][A-Za-z0-9_\-]*">
+			</fieldset>
+			<fieldset>
+				<legend>Color</legend>
+				<input type="color" data-tag-part="option" data-tag-option="color:" value="#000">
+			</fieldset>
+			<fieldset>
+				<legend>Background Color</legend>
+				<input type="color" data-tag-part="option" data-tag-option="backcolor:" value="#dddddd">
+			</fieldset>
+			<fieldset>
+				<legend>Width</legend>
+				<input type="number" value="300" disabled>
+				<p>This option is available in <a href='https://www.plugin999.com/plugin/digital-signature-for-contact-form-7/' target='_blank'>Digital Signature For Contact Form 7 Pro</a></p>
+			</fieldset>
+			<fieldset>
+				<legend>Height</legend>
+				<input type="number" value="200" disabled>
+				<p>This option is available in <a href='https://www.plugin999.com/plugin/digital-signature-for-contact-form-7/' target='_blank'>Digital Signature For Contact Form 7 Pro</a></p>
+			</fieldset>
+			<fieldset>
+				<legend>Id</legend>
+				<input type="text" data-tag-part="option" data-tag-option="id:" value="">
+			</fieldset>
+			<fieldset>
+				<legend>Class</legend>
+				<input type="text" data-tag-part="option" data-tag-option="class:" value="" pattern="[A-Za-z0-9_\-\s]*" >
+			</fieldset>
+		
 	</div>
 	<div class="insert-box">
-		<input type="text" name="<?php echo $type; ?>" class="tag code" readonly="readonly" onfocus="this.select()"/>
-     	<div class="submitbox">
-			<input type="button" class="button button-primary insert-tag" value="<?php echo esc_attr( __( 'Insert Tag', 'digital-signature-for-contact-form-7' ) ); ?>" />
-		</div>
-    	<br class="clear" />
-		<p class="description mail-tag">
+		<div class="flex-container">
+			<input type="text" class="code" readonly="readonly" onfocus="this.select();" data-tag-part="tag">
+			<div class="submitbox">
+				<input type="button" class="button button-primary insert-tag" value="<?php echo esc_attr( __( 'Insert Tag', 'digital-signature-for-contact-form-7' ) ); ?>" />
+			</div>
+    	</div/>
+		<p class="mail-tag-tip">
 			<label for="<?php echo esc_attr( $args['content'] . '-mailtag' ); ?>"><?php echo sprintf( esc_html( __( "To use the value input through this field in a mail field, you need to insert the corresponding mail-tag (%s) into the field on the Mail tab.", 'digital-signature-for-contact-form-7' ) ), '<strong><span class="mail-tag"></span></strong>' ); ?>
-				<input type="text" class="mail-tag code hidden" readonly="readonly" id="<?php echo esc_attr( $args['content'] . '-mailtag' ); ?>" />
-			</label>
+		    </label>
 		</p>
 	</div>
  	<?php  

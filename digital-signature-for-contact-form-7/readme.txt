@@ -1,5 +1,5 @@
 === Digital Signature For Contact Form 7 ===
-Tested up to: 6.6.1
+Tested up to: 6.9
 Tags: Digital Signature, Digital, Signature Field, Signature Contact Form 7, Contact Form 7
 Stable tag: 1.0
 Requires PHP: 5.0
@@ -13,18 +13,17 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 **For Example** 
 If some of the agreements and contracts need to sign digitally then via mouse and touch screen they can do an autograph on the form. that for a reason we build **Contact form 7 Signature Field**
 
+[youtube https://www.youtube.com/watch?v=lPfBadQp44E]
 
 <h3>FEATURES FOR DIGITAL SIGNATURE FOR CONTACT FORM 7:</h3>
 
 * Easy to use
 * Can change the signature pad background color and pen color.
 * Signature field is required or not an option.
-* Customize signature pad width and height options.
 * Can add a custom class and id in signature pad
 * open any form then you can see **digital_signature** button on top.
 * Draw your signature then you can clear the signature pad
 * Can add signature field name in File attachments then send signature attachment in the email.
-* WPML Support
 
 [**📽Get Pro**](https://www.plugin999.com/plugin/digital-signature-for-contact-form-7/) | [**📽Demo**](https://plugin999.com/demo/digital-signature-for-contact-form-7/) | [**📽Documention**](https://www.plugin999.com/docs-category/digital-signature-for-contact-form-7/) | [**📽Support**](https://www.plugin999.com/support/)
 
@@ -32,6 +31,7 @@ If some of the agreements and contracts need to sign digitally then via mouse an
 
 * Multiple Signature Support in One form
 * Attachment In Signature Support
+* Customize signature pad width and height options.
 
 == CONTRIBUTE AND TRANSLATE ==
 
